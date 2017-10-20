@@ -1,0 +1,19 @@
+{
+  "name": "zen_unity_bot",
+  "version": "1.0.0",
+  "description": "A Unity Bank Assistant ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "AI",
+    "bot",
+    "assistant",
+    "NLP",
+    "NL",
+    "ML"
+  ],
+  "author": "Ocheje Michael",
+  "license": "ISC"
+}
