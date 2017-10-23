@@ -15,5 +15,12 @@
     "ML"
   ],
   "author": "Ocheje Michael",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "axios": "^0.17.0",
+    "express": "^4.16.2",
+    "save": "^2.3.1",
+    "socket.io": "^2.0.4"
+  }
 }
