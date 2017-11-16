@@ -61,7 +61,6 @@ io.on("connection", socket => {
     });
 });
 
-//sendSms('hello ocheje, Testing sms functionality', '7062342833');
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
 
@@ -76,6 +75,7 @@ function processResponse(res, callback) {
                 User.findOne({'phone': phone})
                     .then(x => {
                         if(x){
+                            sendSms(`your token is ${Math.ceil(Math.random()*100000)}`, phone);
                             callback('', res)
                         } else {
                             res.result.fulfillment.speech = `This Phone number ${phone} is not associated with any account`
