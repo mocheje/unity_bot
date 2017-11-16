@@ -1,0 +1,4 @@
+{
+  "logfile": "/var/log/unity.log",
+  "logenv": "development"
+}

@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://www.example.com:3000/",
+  "domain": "example.com:3000",  
+  "protocol": "http",
+  "env": "development"
+}
