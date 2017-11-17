@@ -127,6 +127,11 @@ function processResponse(res, callback) {
             res.result.fulfillment.speech = `Beneficiary Added`;
             callback('', res);
             break;
+        case 'atm - locator - location':
+            const { address } = res.result.parameters;
+            res.result.fulfillment.speech = `There are atm machines 10 blocks away from ${address} `;
+            callback('', res);
+            break;
         default :
             res.result.fulfillment.speech = res.result.fulfillment.speech || `Processing... you can go ahead and ask other things while i'm running my queries`
             callback('', res)
