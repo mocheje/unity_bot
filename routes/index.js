@@ -7,7 +7,7 @@ const flowConfig = require('../shared/config/dialogFlow.json');
 const DF = apiai(flowConfig.API_KEY);
 const PR = require('../processor/processor');
 const request = require('request');
-const FBMBOT = process.ENV.FBMBOT;
+const FBMBOT = process.env.FBMBOT;
 
 router.get("/", (req, res) => {
     res.send({ response: "I am alive" }).status(200);
