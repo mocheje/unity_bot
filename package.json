@@ -25,6 +25,7 @@
     "mongoose": "^4.12.4",
     "promise-redis": "0.0.5",
     "redis": "^2.8.0",
+    "request": "^2.83.0",
     "save": "^2.3.1",
     "socket.io": "^2.0.4",
     "underscore": "^1.8.3",
