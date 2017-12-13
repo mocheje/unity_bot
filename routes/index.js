@@ -7,6 +7,7 @@ const flowConfig = require('../shared/config/dialogFlow.json');
 const DF = apiai(flowConfig.API_KEY);
 const PR = require('../processor/processor');
 const request = require('request');
+const FBMBOT = process.ENV.FBMBOT;
 
 router.get("/", (req, res) => {
     res.send({ response: "I am alive" }).status(200);
@@ -136,6 +137,7 @@ function handleMessage(sender_psid, received_message) {
 }
 
 function callSendAPI(sender_psid, response) {
+    console.log(FBMBOT);
     // Construct the message body
     let request_body = {
         "recipient": {
@@ -144,9 +146,10 @@ function callSendAPI(sender_psid, response) {
         "message": response
     }
     // Send the HTTP request to the Messenger Platform
+    const bot = FBMBOT || PAGE_ACCESS_TOKEN
     request({
         "uri": "https://graph.facebook.com/v2.6/me/messages",
-        "qs": { "access_token": PAGE_ACCESS_TOKEN },
+        "qs": { "access_token": bot },
         "method": "POST",
         "json": request_body
     }, (err, res, body) => {
