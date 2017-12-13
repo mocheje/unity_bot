@@ -1,3 +1,6 @@
+//import module for sending sms
+const sendSms = require('../shared/lib/sms').sendSms
+
 function processResponse(res, callback) {
     console.log(res.result.metadata.intentName)
     switch (res.result.metadata.intentName) {

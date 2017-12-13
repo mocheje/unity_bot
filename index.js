@@ -12,8 +12,7 @@ const apiai = require('apiai');
 const flowConfig = require('./shared/config/dialogFlow.json');
 const DF = apiai(flowConfig.API_KEY); //TODO move config to use ENV_VARS
 
-//import module for sending sms
-const sendSms = require('./shared/lib/sms').sendSms
+
 //load modules for data persistence
 const cache = require('./shared/lib/cache').getRedisClient();
 const db = require('./shared/lib/db');
@@ -43,7 +42,7 @@ io.on("connection", socket => {
     console.log("New client connected");
     socket.on("disconnect", () => console.log("Client disconnected"));
     socket.on("clientRequest", data => {
-        const request = DF.textRequest(data, {sessionId: '7u097678u'});
+        const request = DF.textRequest(data, {sessionId: '7u099ujhgythbn'});
         request.on('response', function(response) {
             // do all computations here for now.
             PR(response, function(err, data){
