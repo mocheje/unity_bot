@@ -24,7 +24,7 @@ var getModel = function(obj, callback) {
 
   
   if (!mongoose.models[obj]) {
-    var uristring = 'mongodb://' + mongoConfig.host + '/unity_bot';
+    var uristring = 'mongodb://' + mongoConfig.host + '/andy';
 
 
     // Create schema

@@ -2,8 +2,8 @@
 const sendSms = require('../shared/lib/sms').sendSms
 
 function processResponse(res, callback) {
-    console.log(res.result.metadata.intentName)
-    switch (res.result.metadata.intentName) {
+    console.log(res.queryResult.intent.displayName)
+    switch (res.queryResult.intent.displayName) {
         case 'check.account_balance.context':
             const phone = res.result.parameters['phone-number'];
             console.log(phone);
@@ -14,20 +14,20 @@ function processResponse(res, callback) {
                             sendSms(`your token is ${Math.ceil(Math.random()*100000)}`, phone);
                             callback('', res)
                         } else {
-                            res.result.fulfillment.speech = `This Phone number ${phone} is not associated with any account`
+                            res.queryResult.fulfillmentText = `This Phone number ${phone} is not associated with any account`
                             callback('', res)
                         }
 
                     })
             } else {
-                res.result.fulfillment.speech = `This Phone number ${phone} is not associated with any account`
+                res.queryResult.fulfillmentText = `This Phone number ${phone} is not associated with any account`
                 callback('', res)
             }
             break;
 
         case 'check.account_balance.context - custom':
             const token = res.result.parameters.token;
-            res.result.fulfillment.speech = `Token ${token} correct and your account balance is 60000.009 NGN`;
+            res.queryResult.fulfillmentText = `Token ${token} correct and your account balance is 60000.009 NGN`;
             callback('', res)
             break;
         case 'fund_transfer':
@@ -42,15 +42,15 @@ function processResponse(res, callback) {
                             const ben = x.beneficiaries.filter(f => (f.fullname.match(name)) !== null);
                             if(ben && ben.length == 1){
                                 //transfer money to this beneficiary
-                                res.result.fulfillment.speech = `${amount} transferred to ${ben[0].fullname} and your current balance is ${60000.009 - amount}`
+                                res.queryResult.fulfillmentText = `${amount} transferred to ${ben[0].fullname} and your current balance is ${60000.009 - amount}`
                             } else if(ben && ben.length == 1){
-                                res.result.fulfillment.speech = `${amount} has been transferred to ${beneficiary} from ${account}`
+                                res.queryResult.fulfillmentText = `${amount} has been transferred to ${beneficiary} from ${account}`
                             } else {
-                                res.result.fulfillment.speech = `Beneficiary not found Do you want to add ${beneficiary} as a beneficiary`
+                                res.queryResult.fulfillmentText = `Beneficiary not found Do you want to add ${beneficiary} as a beneficiary`
                             }
                             callback('', res);
                         } else {
-                            res.result.fulfillment.speech = `Account number ${account} does not exist`;
+                            res.queryResult.fulfillmentText = `Account number ${account} does not exist`;
                             callback('', res)
                         }
                     })
@@ -59,16 +59,16 @@ function processResponse(res, callback) {
             }
             break;
         case 'fund_transfer - add - beneficiary':
-            res.result.fulfillment.speech = `Beneficiary Added`;
+            res.queryResult.fulfillmentText = `Beneficiary Added`;
             callback('', res);
             break;
         case 'atm - locator - location':
             const { address } = res.result.parameters;
-            res.result.fulfillment.speech = `There are atm machines 10 blocks away from ${address} `;
+            res.queryResult.fulfillmentText = `There are atm machines 10 blocks away from ${address} `;
             callback('', res);
             break;
         default :
-            res.result.fulfillment.speech = res.result.fulfillment.speech || `Processing... you can go ahead and ask other things while i'm running my queries`
+            res.queryResult.fulfillmentText = res.queryResult.fulfillmentText || `Processing... you can go ahead and ask other things while i'm running my queries`
             callback('', res)
     }
 }

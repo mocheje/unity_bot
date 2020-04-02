@@ -4,7 +4,7 @@ var winston = require("winston");
 var config = require("../config/log.json");
 winston.emitErrs = true;
 
-var logfile = (config.logenv === 'production' ? config.logfile : path.join(__dirname, '..', 'tmp', 'unity.log'));
+var logfile = (config.logenv === 'production' ? config.logfile : path.join(__dirname, '..', 'tmp', 'andy.log'));
 
 // create log file if not existing
 fs.closeSync(fs.openSync(logfile, 'a'));
